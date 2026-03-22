@@ -11,7 +11,9 @@ export default {
         primary: "var(--primary)",
         secondary: "var(--secondary)",
         text: "var(--text)",
+        "brand-muted": "var(--text-muted)",
         card: "var(--card)",
+        "brand-separator": "var(--border)",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

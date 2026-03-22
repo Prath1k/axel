@@ -3,72 +3,72 @@
 @tailwind utilities;
 
 @layer base {
-  :root,
-  html[data-theme="retro"] {
-    --bg: #1A1A2E;
-    --primary: #E94560;
-    --secondary: #0F3460;
-    --text: #EAEAEA;
-    --card: #16213E;
+  :root {
+    --bg: #FFFFFF;
+    --primary: #000000;
+    --secondary: #F5F5F7;
+    --text: #1D1D1F;
+    --brand-muted: #86868B;
+    --card: #FFFFFF;
+    --border: rgba(0, 0, 0, 0.05);
   }
 
-  html[data-theme="futuristic"] {
-    --bg: #050510;
-    --primary: #00D4FF;
-    --secondary: #7B00FF;
-    --text: #E0F7FA;
-    --card: #0A0A2A;
-  }
-
-  html[data-theme="oldschool"] {
-    --bg: #2C1810;
-    --primary: #D4A017;
-    --secondary: #8B4513;
-    --text: #F5DEB3;
-    --card: #3E2010;
+  html[data-theme="dark"] {
+    --bg: #000000;
+    --primary: #FFFFFF;
+    --secondary: #1C1C1E;
+    --text: #F5F5F7;
+    --brand-muted: #8E8E93;
+    --card: #1C1C1E;
+    --border: rgba(255, 255, 255, 0.1);
   }
 
   body {
-    @apply bg-bg text-text font-sans antialiased overflow-x-hidden;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* CRT Scanline effect */
-  body::after {
-    content: " ";
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-    z-index: 9999;
-    background-size: 100% 4px, 6px 100%;
-    pointer-events: none;
+    @apply bg-bg text-text font-sans antialiased;
+    overflow-x: hidden;
   }
 }
 
-@layer utilities {
-  .neon-glow {
-    box-shadow: 0 0 10px var(--primary), inset 0 0 10px var(--primary);
-  }
-  
-  .text-neon-glow {
-    text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
-  }
-  
+@layer components {
   .glass {
     background-color: color-mix(in srgb, var(--card) 80%, transparent);
-    @apply backdrop-blur-md border border-white/10;
+    @apply backdrop-blur-xl border border-brand-separator;
   }
 
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+  .nav-blur {
+    background-color: color-mix(in srgb, var(--bg) 80%, transparent);
+    @apply backdrop-blur-md sticky top-0 z-50;
   }
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] active:scale-[0.98];
   }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Sticker Layer */
+#sticker-container {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sticker {
+  position: absolute;
+  user-select: none;
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.sticker:active {
+  cursor: grabbing;
 }
